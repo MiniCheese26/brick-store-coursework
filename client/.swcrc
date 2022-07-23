@@ -1,0 +1,20 @@
+{
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "decorators": false,
+      "dynamicImport": false
+    },
+    "externalHelpers": false,
+    "loose": false,
+    "keepClassNames": false,
+    "minify": {
+          "compress": true,
+          "mangle": false
+     }
+  },
+  "minify": true,
+  "env": {
+    "targets": ">.25%, not dead"
+  }
+}

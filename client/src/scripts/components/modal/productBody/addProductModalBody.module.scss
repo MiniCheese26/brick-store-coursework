@@ -1,0 +1,139 @@
+@import 'src/styles/utils';
+@import 'src/styles/theme';
+@import 'src/styles/commonComponents.module';
+@import 'bootstrap-icons';
+
+.container {
+  display: grid;
+  grid:
+    "image gallery gallery gallery" 2fr
+    "name name price price" 1fr
+    "description description description description" 1fr
+    "type type colour colour" 1fr
+    "stock stock discount discount" 1fr
+    "visibility . . ." .5fr
+    "actions actions actions actions" 1fr
+    "error error error error" minmax(0, .5fr)
+    / 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
+  height: 100%;
+  align-items: center;
+}
+
+.image-container {
+  @include column-centered;
+  grid-area: image;
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.2s ease-in-out;
+  border: 1px solid $not-quite-black;
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $not-quite-white;
+  }
+}
+
+.image-container-subheading {
+  @include font-small;
+  text-align: center;
+  color: #666;
+}
+
+.gallery-container {
+  grid-area: gallery;
+  display: grid;
+  grid-template-columns: repeat(4, .25fr);
+  grid-template-rows: repeat(auto-fill, .25fr);
+  grid-gap: 8px;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+  overflow-y: auto;
+  padding: $spacing-medium;
+  background-color: $not-quite-white;
+}
+
+.gallery-image {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.bi-x {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+
+  &::before {
+    transition: background-color 0.2s ease-in-out;
+    background-color: $not-really-white;
+    border-radius: 50px;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &::before {
+      background-color: #EE5862;
+    }
+  }
+}
+
+.empty-image-text {
+  @include font-medium;
+}
+
+.actions-container {
+  grid-area: actions;
+  grid:
+    "clear reset . . . submit" 1fr
+    / 1fr 1fr 1fr 1fr 1fr 1fr;
+  display: grid;
+  height: 100%;
+  align-items: center;
+  column-gap: $spacing-medium;
+}
+
+.clear-button {
+  @extend .action-button;
+  grid-area: clear;
+  height: 50%;
+}
+
+.submit-button {
+  @extend .action-button;
+  grid-area: submit;
+  height: 50%;
+}
+
+.reset-button {
+  @extend .action-button;
+  grid-area: reset;
+  height: 50%;
+}
+
+.message-container {
+  @include row-centered;
+  grid-area: error;
+  height: 100%;
+  border-radius: $medium-radius;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease-in-out;
+
+  & > p {
+    @include font-medium;
+    color: #fff;
+  }
+
+  &.visible {
+    transform: scaleY(1);
+  }
+}
+
+textarea {
+  resize: none;
+}

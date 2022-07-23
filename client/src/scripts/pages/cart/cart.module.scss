@@ -1,0 +1,229 @@
+@import 'src/styles/utils';
+@import 'src/styles/theme';
+@import 'src/styles/commonComponents.module';
+@import 'bootstrap-icons';
+
+.cart-scroll-container {
+  @include column-centered;
+  flex: 1 0 90%;
+  justify-content: flex-start;
+  margin-top: $spacing-large;
+  margin-bottom: $spacing-medium;
+}
+
+.cart-container {
+  @include column-centered;
+  justify-content: flex-start;
+  row-gap: $spacing-medium;
+  width: 100%;
+  padding: 0 4vw;
+  max-width: 1400px;
+  flex: 1 0;
+}
+
+.cart-row {
+  display: grid;
+  grid-template-rows: 2fr;
+  grid-template-columns: 85px 2fr .5fr .75fr .25fr;
+  grid-template-areas:
+    'img title quantity price remove'
+    'img error quantity price remove';
+  border-radius: $medium-radius;
+  background-color: $not-quite-white;
+  padding: $spacing-medium;
+  width: 100%;
+}
+
+.cart-img-container {
+  grid-area: img;
+  max-width: 85px;
+  max-height: 85px;
+}
+
+.cart-img {
+  background-color: #FFF;
+  border-radius: $medium-radius;
+}
+
+.cart-title {
+  grid-area: title;
+  margin-left: $spacing-medium;
+  font-size: 12pt;
+  font-weight: 500;
+  max-width: 600px;
+  color: inherit;
+  text-decoration: none;
+  padding: $spacing-medium;
+}
+
+.cart-error {
+  @extend .cart-title;
+  grid-area: error;
+  color: red;
+}
+
+.cart-quantity-container {
+  grid-area: quantity;
+  @include row-centered;
+}
+
+.cart-quantity {
+  max-height: 50px;
+  max-width: 80px;
+  border: 1px solid $not-quite-black;
+  border-radius: $small-radius;
+  padding: $spacing-medium;
+}
+
+.bi-plus {
+  border: 1px solid $not-quite-black;
+  border-radius: $small-radius;
+  padding: $spacing-medium;
+  margin-left: $spacing-small;
+  display: none;
+  font-size: 1rem;
+
+  &:active, &:hover {
+    background-color: $not-really-white;
+  }
+}
+
+.bi-dash {
+  border: 1px solid $not-quite-black;
+  border-radius: $small-radius;
+  padding: $spacing-medium;
+  margin-right: $spacing-small;
+  display: none;
+
+  &:active, &:hover {
+    background-color: $not-really-white;
+  }
+}
+
+.cart-price-container {
+  grid-area: price;
+  @include row-centered;
+}
+
+.cart-price {
+  @include font-large;
+}
+
+.cart-delete-icon-container {
+  grid-area: remove;
+  @include row-centered;
+}
+
+.bi-trash {
+  font-size: 1.5rem;
+  transition: color .2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    color: $red;
+  }
+}
+
+.cart-quantity-header {
+  @include font-medium;
+  grid-area: quantity;
+  text-align: center;
+  color: $not-quite-black;
+}
+
+.cart-price-header {
+  @include font-medium;
+  grid-area: price;
+  text-align: center;
+  color: $not-quite-black;
+}
+
+.cart-remove-header {
+  @include font-medium;
+  grid-area: remove;
+  text-align: center;
+  color: $not-quite-black;
+}
+
+.cart-checkout-button {
+  grid-area: remove;
+  @extend .action-button;
+}
+
+@media only screen and (max-width: 1400px) {
+  .cart-container {
+    padding: 0 6vw;
+  }
+}
+
+@media only screen and (max-width: 968px) {
+  .cart-container > div:last-child {
+    display: flex;
+
+    & > div {
+      flex: 1 0;
+    }
+
+    & > a {
+      flex: 2 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .cart-container > div:nth-child(1) {
+    display: none;
+  }
+
+  .cart-container > div:last-child {
+    padding-bottom: $spacing-medium;
+    padding-top: $spacing-medium;
+  }
+
+  .cart-row {
+    grid-template-rows: 1fr .25fr .75fr;
+    grid-template-columns: 1fr 1fr 1fr .7fr;
+    grid-row-gap: $spacing-medium;
+    grid-template-areas:
+      'img title title remove'
+      'img error error remove'
+      'quantity quantity . price';
+    padding-bottom: unset;
+    padding-top: unset;
+  }
+
+  .cart-img-container {
+    @include row-centered;
+    max-width: 100%;
+    max-height: 100%;
+    padding-top: $spacing-medium;
+  }
+
+  .cart-img {
+    max-width: 85px;
+    max-height: 85px;
+    padding: $spacing-small;
+  }
+
+  .cart-title {
+    @include font-small;
+    margin-left: unset;
+    padding-top: $spacing-medium;
+  }
+
+  .cart-quantity-container {
+    justify-content: flex-start;
+  }
+
+  .cart-quantity {
+    max-width: 60px;
+  }
+
+  .bi-plus {
+    display: unset;
+  }
+
+  .bi-dash {
+    display: unset;
+  }
+}

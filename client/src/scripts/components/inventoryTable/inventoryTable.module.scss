@@ -1,0 +1,226 @@
+@import 'src/styles/utils';
+@import 'src/styles/theme';
+@import 'src/styles/commonComponents.module';
+@import 'bootstrap-icons';
+
+.container {
+  display: grid;
+  grid-template-rows: .05fr 1fr;
+  grid-template-columns: auto;
+  height: 100%;
+}
+
+.header {
+  display: grid;
+  grid:
+    'id name colour type price discounted_price discount stock date_added visibility search add' 1fr
+    / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: $not-quite-white;
+  border-bottom: 1px solid $not-quite-black;
+}
+
+@mixin header-toggle-item {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr auto;
+  padding-left: $spacing-small;
+  padding-right: $spacing-small;
+  transition: background-color 0.2s ease-in-out;
+  @include font-medium;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $not-really-white;
+  }
+
+  & > p {
+    @include row-centered;
+    height: 100%;
+  }
+
+  & > i {
+    transform: rotate(0deg);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &.toggled {
+    & > i {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.selected {
+    & > i {
+      display: flex;
+    }
+  }
+
+  & > i {
+    display: none;
+  }
+}
+
+.header-id {
+  @include header-toggle-item;
+  grid-area: id;
+}
+
+.header-name {
+  @include header-toggle-item;
+  grid-area: name;
+}
+
+.header-colour {
+  @include header-toggle-item;
+  grid-area: colour;
+}
+
+.header-type {
+  @include header-toggle-item;
+  grid-area: type;
+}
+
+.header-price {
+  @include header-toggle-item;
+  grid-area: price;
+}
+
+.header-discounted-price {
+  @include header-toggle-item;
+  grid-area: discounted_price;
+}
+
+.header-discount {
+  @include header-toggle-item;
+  grid-area: discount;
+}
+
+.header-stock {
+  @include header-toggle-item;
+  grid-area: stock;
+}
+
+.header-date-added {
+  @include header-toggle-item;
+  grid-area: date_added;
+}
+
+.header-visibility {
+  @include header-toggle-item;
+  grid-area: visibility;
+}
+
+@mixin header-action-item {
+  & > * {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.header-search {
+  @include header-action-item;
+  grid-area: search;
+
+  & > input {
+    border-left: 1px solid $not-quite-black;
+    border-right: 1px solid $not-quite-black;
+    padding: $spacing-small;
+    @include font-large;
+  }
+}
+
+.header-add {
+  @include header-action-item;
+  grid-area: add;
+}
+
+.body {
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+
+  & > li:nth-child(even) {
+    background-color: $not-quite-white;
+  }
+
+  & > li:nth-child(odd) {
+    background-color: $not-really-white;
+  }
+}
+
+.body-row {
+  display: grid;
+  grid:
+    'id name colour type price discounted_price discount stock date_added visibility edit delete' 1fr
+    / 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: $spacing-small;
+  justify-items: center;
+  align-items: center;
+}
+
+@mixin body-row-item {
+  @include row-centered;
+  text-align: center;
+}
+
+.body-row-id {
+  @include body-row-item;
+  grid-area: id;
+}
+
+.body-row-name {
+  @include body-row-item;
+  grid-area: name;
+}
+
+.body-row-colour {
+  @include body-row-item;
+  grid-area: colour;
+}
+
+.body-row-type {
+  @include body-row-item;
+  grid-area: type;
+}
+
+.body-row-price {
+  @include body-row-item;
+  grid-area: price;
+}
+
+.body-row-discounted-price {
+  @include body-row-item;
+  grid-area: discounted_price;
+}
+
+.body-row-discount {
+  @include body-row-item;
+  grid-area: discount;
+}
+
+.body-row-stock {
+  @include body-row-item;
+  grid-area: stock;
+}
+
+.body-row-date-added {
+  @include body-row-item;
+  grid-area: date_added;
+}
+
+.body-row-visibility {
+  @include body-row-item;
+  grid-area: visibility;
+}
+
+.body-row-edit {
+  @extend .action-button-no-border;
+  border: 2px solid $not-quite-black;
+  grid-area: edit;
+}
+
+.body-row-delete {
+  @extend .action-button-no-border;
+  border: 2px solid $not-quite-black;
+  grid-area: delete;
+}

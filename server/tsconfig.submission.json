@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext"],
+    "sourceMap": false,
+    "outDir": "../submission/server",
+    "moduleResolution": "Node",
+    "removeComments": false
+  }
+}

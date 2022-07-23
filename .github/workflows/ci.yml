@@ -1,0 +1,20 @@
+name: CI
+on:
+  push:
+    paths-ignore:
+      - '**/updateDependencies.yml'
+      - 'LICENSE'
+      - '.gitignore'
+      - '**/README.md'
+    branches:
+      - main
+      - dev
+jobs:
+  ClientCI:
+    uses: UP2012320/brick-store-coursework-2021/.github/workflows/reusable-ci.yml@dev
+    with:
+      workingDir: ./client
+  ServerCI:
+    uses: UP2012320/brick-store-coursework-2021/.github/workflows/reusable-ci.yml@dev
+    with:
+      workingDir: ./server
